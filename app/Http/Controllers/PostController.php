@@ -12,8 +12,13 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = auth() ->user() -> posts() -> orderBy("created_at",direction:"desc")->paginate(5);
+
         //
-        return response()->json(Post::all());
+        return response()->json($posts);
+
+        //
+        // return response()->json(Post::all());
 
     }
 
@@ -44,6 +49,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+
+
         //
 
     }
