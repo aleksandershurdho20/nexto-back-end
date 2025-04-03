@@ -13,6 +13,8 @@ class PostController extends Controller
     public function index()
     {
         //
+        return response()->json(Post::all());
+
     }
 
     
@@ -43,6 +45,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+
     }
 
 
