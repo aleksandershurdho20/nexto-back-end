@@ -70,5 +70,18 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        if (auth()->user()->id !== $post->user_id) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized - You can only delete your own posts'
+            ], 403);
+        }
+    
+        $post->delete();
+    
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Post deleted successfully'
+        ]);
     }
 }
