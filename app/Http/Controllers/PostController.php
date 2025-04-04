@@ -62,6 +62,15 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $data = Post::findorFail($post->id);
+        $data->update($request->all());
+        $data['slug']= Str::slug($data['title']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Post updated successfully',
+            'data' => $data
+        ]);
+
     }
 
     /**
