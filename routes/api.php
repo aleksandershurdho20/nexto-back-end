@@ -19,7 +19,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/posts/{post:slug}', PostShowController::class);
+Route::get('/posts', PostShowController::class);
 
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])
