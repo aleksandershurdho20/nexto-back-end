@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\RepliesController;
 
 use App\Http\Controllers\Frontend\PostShowController;
 /*
@@ -23,6 +24,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::get('/posts', PostShowController::class);
 Route::apiResource("/comments", CommentsController::class);
+Route::apiResource("/replies", CommentsController::class);
 
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])
