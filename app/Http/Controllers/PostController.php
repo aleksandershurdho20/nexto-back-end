@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = auth() ->user() -> posts() -> orderBy("created_at",direction:"desc")->paginate(5);
+        $posts = auth() ->user() -> posts() ->with("comments") -> orderBy("created_at",direction:"desc")->paginate(5);
 
         //
         return response()->json($posts);

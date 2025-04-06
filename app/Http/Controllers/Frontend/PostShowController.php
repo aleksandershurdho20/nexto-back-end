@@ -14,6 +14,6 @@ class PostShowController extends Controller
     public function __invoke(Request $request)
     {
         //
-        return response()->json(Post::all());
+        return response()->json(Post::with('comments')->get());
     }
 }
