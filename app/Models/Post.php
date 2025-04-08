@@ -27,4 +27,8 @@ class Post extends Model
     public function replies(): HasMany {
         return $this->hasMany(Replies::class);
     }
+    public function postInsight()
+    {
+        return $this->hasOne(PostInsight::class);
+    }
 }
