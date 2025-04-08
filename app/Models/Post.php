@@ -29,6 +29,6 @@ class Post extends Model
     }
     public function postInsight()
     {
-        return $this->hasOne(PostInsight::class);
+        return $this->hasOne(PostInsights::class);
     }
 }

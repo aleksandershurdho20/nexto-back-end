@@ -9,6 +9,7 @@ class PostInsights extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['post_id'];
     public function post()
     {
         return $this->belongsTo(Post::class);
