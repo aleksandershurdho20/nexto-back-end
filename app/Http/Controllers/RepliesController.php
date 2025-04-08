@@ -13,6 +13,7 @@ class RepliesController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -34,6 +35,10 @@ class RepliesController extends Controller
             'content' => ['required']
         ]);
         Replies::create($request->all());
+        return response() -> json([
+            'status' => 'success',
+            'message' => 'Reply created succesfully'
+        ],status:201);
     }
 
     /**
@@ -42,6 +47,11 @@ class RepliesController extends Controller
     public function show(string $id)
     {
         //
+
+        $replies = Replies::where('comment_id',$id)->get();
+
+        return response()->json($replies);
+
     }
 
     /**
