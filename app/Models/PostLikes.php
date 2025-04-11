@@ -18,5 +18,7 @@ class PostLikes extends Model
 {
     return $this->belongsTo(PostInsights::class);
 }
+protected $fillable = ['post_insights_id', 'user_id'];
+
 
 }

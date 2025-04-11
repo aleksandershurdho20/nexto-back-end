@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('post_dislikes', function (Blueprint $table) {
             $table->id();
-            $table->integer("dislikes");
+            $table->integer("dislikes")->default(0);
             $table->foreignIdFor(PostInsights::class)  
             ->cascadeOnDelete();
             $table->foreignIdFor(User::class);

@@ -17,7 +17,7 @@ class PostShowController extends Controller
         //
 
         {
-            $query = Post::with(['comments', 'replies']);
+            $query = Post::with(['comments', 'replies','postInsight.likes', 'postInsight.dislikes']);
         
             if ($request->has('id')) {
                 $post = $query->where('id', $request->id)->first();

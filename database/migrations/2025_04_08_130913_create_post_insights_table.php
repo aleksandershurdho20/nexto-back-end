@@ -15,8 +15,6 @@ return new class extends Migration
         Schema::create('post_insights', function (Blueprint $table) {
             $table->id();
             $table->integer('views')->default(0);
-            $table->integer('likes')->default(0);
-            $table->integer('dislikes')->default(0);
             $table->foreignIdFor(Post::class)  
             ->cascadeOnDelete();    
             $table->timestamps();
