@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\PostActions;
+use App\Http\Controllers\FavorePost;
 
 
 use App\Http\Controllers\Frontend\PostShowController;
@@ -29,6 +30,7 @@ Route::apiResource("/comments", CommentsController::class);
 Route::apiResource("/replies", RepliesController::class);
 
 Route::middleware('auth:sanctum')->post('/post-insights', PostActions::class);
+Route::middleware('auth:sanctum')->post('/favorite', FavorePost::class);
 
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])

@@ -12,7 +12,7 @@ class FavoritePosts extends Model
 {
     use HasFactory;
 
-    protected $fillables = [];
+    protected $fillable = ['user_id','post_id'];
 
     public function user() : BelongsTo{
         return $this->belongsTo(User::class);
