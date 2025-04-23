@@ -12,6 +12,8 @@ use App\Http\Controllers\ListFavoritePosts;
 use App\Http\Controllers\FavoritePostsController;
 
 use App\Http\Controllers\Frontend\PostShowController;
+use App\Http\Controllers\CategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +38,7 @@ Route::middleware('auth:sanctum')->post('/favorite', FavorePost::class);
 Route::middleware('auth:sanctum')->get('/favorite-posts', ListFavoritePosts::class);
 Route::middleware('auth:sanctum')->get('/search/favorite-posts', [FavoritePostsController::class, 'SearchFavoritePosts']);
 
+Route::middleware('auth:sanctum')->post('/category',[CategoryController::class,'CreateCategory']);
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])
     ->except(['create','edit']);
