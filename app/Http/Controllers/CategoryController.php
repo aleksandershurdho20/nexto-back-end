@@ -22,4 +22,23 @@ class CategoryController extends Controller
         ],201);
 
     }
+
+    public function DeleteCategory ($id){
+
+        $category = Category::FindOrFail($id);
+
+        if(!$category->get()){
+            return response()->json([
+                'message' => 'Category not found!'
+            ],404);
+
+        }
+
+        $category->delete();
+
+        return response()->json([
+            'message' => 'Category Deleted succesfully!'
+        ],200);
+
+    }
 }

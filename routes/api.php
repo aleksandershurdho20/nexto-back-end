@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->get('/favorite-posts', ListFavoritePosts::cla
 Route::middleware('auth:sanctum')->get('/search/favorite-posts', [FavoritePostsController::class, 'SearchFavoritePosts']);
 
 Route::middleware('auth:sanctum')->post('/category',[CategoryController::class,'CreateCategory']);
+Route::delete('/category/{id}',[CategoryController::class,'DeleteCategory']);
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])
     ->except(['create','edit']);
