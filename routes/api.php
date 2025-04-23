@@ -9,6 +9,7 @@ use App\Http\Controllers\PostActions;
 use App\Http\Controllers\FavorePost;
 
 use App\Http\Controllers\ListFavoritePosts;
+use App\Http\Controllers\FavoritePostsController;
 
 use App\Http\Controllers\Frontend\PostShowController;
 /*
@@ -33,6 +34,7 @@ Route::apiResource("/replies", RepliesController::class);
 Route::middleware('auth:sanctum')->post('/post-insights', PostActions::class);
 Route::middleware('auth:sanctum')->post('/favorite', FavorePost::class);
 Route::middleware('auth:sanctum')->get('/favorite-posts', ListFavoritePosts::class);
+Route::middleware('auth:sanctum')->get('/search/favorite-posts', [FavoritePostsController::class, 'SearchFavoritePosts']);
 
 Route::apiResource("/dashboard/posts", PostController::class)
     ->middleware(['auth:sanctum'])
