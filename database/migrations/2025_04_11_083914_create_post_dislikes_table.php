@@ -20,6 +20,8 @@ return new class extends Migration
             ->cascadeOnDelete();
             $table->foreignIdFor(User::class);
             $table->timestamps();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
+
             $table->unique(['post_insights_id', 'user_id']);
 
         });

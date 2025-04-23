@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['title','slug','description','is_published'];
+    protected $fillable = ['title','slug','description','is_published','category_id'];
     protected $casts = [
         'is_published' => 'boolean'
 
