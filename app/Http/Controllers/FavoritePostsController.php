@@ -34,4 +34,16 @@ class FavoritePostsController extends Controller
 
 
     }
+
+    public function filterPosts(Request $request){
+        $userID = $request->user()->id;
+
+        $sortBy = $request->query('sortBy');
+        $favoritePost = Post::join('favorite_posts', 'posts.id', '=', 'favorite_posts.post_id')
+        ->where('favorite_posts.user_id',$userID);
+        if($sortBy === "recently_added"){
+            $posts = $favoritePost->orderBy('favorite_posts.created_at')->get();
+            return response()->json($posts);
+        }
+    }
 }
