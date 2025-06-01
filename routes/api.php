@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->post('/post-insights', PostActions::class);
 Route::middleware('auth:sanctum')->post('/favorite', FavorePost::class);
 Route::middleware('auth:sanctum')->get('/favorite-posts', ListFavoritePosts::class);
 Route::middleware('auth:sanctum')->get('/search/favorite-posts', [FavoritePostsController::class, 'SearchFavoritePosts']);
-Route::middleware('auth:sanctum')->get('/favorite-posts', [FavoritePostsController::class, 'filterPosts']);
+Route::middleware('auth:sanctum')->get('/favorite-posts/filter', [FavoritePostsController::class, 'filterPosts']);
 
 Route::middleware('auth:sanctum')->post('/category',[CategoryController::class,'CreateCategory']);
 Route::delete('/category/{id}',[CategoryController::class,'DeleteCategory']);

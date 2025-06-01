@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FavoritePosts;
+use App\Models\PostInsights;
+
 use App\Models\Post;
 
 class FavoritePostsController extends Controller
@@ -37,13 +39,32 @@ class FavoritePostsController extends Controller
 
     public function filterPosts(Request $request){
         $userID = $request->user()->id;
-
         $sortBy = $request->query('sortBy');
-        $favoritePost = Post::join('favorite_posts', 'posts.id', '=', 'favorite_posts.post_id')
-        ->where('favorite_posts.user_id',$userID);
-        if($sortBy === "recently_added"){
-            $posts = $favoritePost->orderBy('favorite_posts.created_at')->get();
-            return response()->json($posts);
+    
+        $query = Post::join('favorite_posts', 'posts.id', '=', 'favorite_posts.post_id')
+            ->where('favorite_posts.user_id', $userID)
+            ->select('posts.*');
+    
+        if ($sortBy === 'recently_added') {
+            $posts = $query->orderBy('favorite_posts.created_at', 'desc')->get();
+        } elseif ($sortBy === 'most_popular') {
+            $posts = $query
+                ->join('post_insights', 'posts.id', '=', 'post_insights.post_id')
+                ->orderByDesc('post_insights.views')
+                ->select('posts.*', 'post_insights.views')
+                ->get();
+        } else {
+            $posts = $query->get(); 
         }
+    
+        if ($posts->isEmpty()) {
+            return response()->json([
+                'message' => 'No favorite posts found!'
+            ], 404);
+        }
+    
+        return response()->json([
+            'favorite_posts' => $posts
+        ], 200);
     }
 }
